@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель управления</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/admin.css?v=2">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" role="navigation" aria-label="Навигация панели управления">
+    <div class="sidebar-logo">
+      <h2>Лингвистика для детей</h2>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item" data-section="dashboard">
+        <span class="nav-icon">📊</span> Обзор
+      </button>
+      <button class="nav-item" data-section="homepage">
+        <span class="nav-icon">🏠</span> Главная
+      </button>
+      <button class="nav-item" data-section="courses">
+        <span class="nav-icon">📚</span> Курсы
+      </button>
+      <button class="nav-item" data-section="projects">
+        <span class="nav-icon">🗂️</span> Проекты
+      </button>
+      <button class="nav-item" data-section="messages">
+        <span class="nav-icon">✉️</span> Сообщения
+        <span class="nav-badge" style="display:none">0</span>
+      </button>
+      <button class="nav-item" data-section="news">
+        <span class="nav-icon">📰</span> Новости
+      </button>
+      <button class="nav-item" data-section="blog">
+        <span class="nav-icon">📝</span> Блог
+      </button>
+      <button class="nav-item" data-section="materials">
+        <span class="nav-icon">📖</span> Материалы
+      </button>
+      <button class="nav-item" data-section="photos">
+        <span class="nav-icon">📷</span> Фото
+      </button>
+      <button class="nav-item" data-section="reviews">
+        <span class="nav-icon">⭐</span> Отзывы
+      </button>
+      <button class="nav-item" data-section="faq">
+        <span class="nav-icon">❓</span> FAQ
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="nav-item" id="btn-change-password" style="margin-bottom:4px">
+        <span class="nav-icon">🔑</span> Сменить пароль
+      </button>
+      <button class="nav-item" id="btn-logout">
+        <span class="nav-icon">🚪</span> Выйти
+      </button>
+    </div>
+  </aside>
+
+  <!-- Mobile sidebar overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Main -->
+  <div class="main">
+    <!-- Top bar -->
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Открыть боковое меню">☰</button>
+        <span class="topbar-title" id="section-title">Панель управления</span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-user">👤 <span id="admin-username"></span></span>
+        <a href="/" class="btn btn-ghost btn-sm" target="_blank">↗ Сайт</a>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- ═══ DASHBOARD ═══════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-dashboard">
+        <div class="panel-header">
+          <h2>Обзор</h2>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card stat-nav" data-section="homepage">
+            <div class="stat-icon">🏠</div>
+            <div class="stat-num">—</div>
+            <div class="stat-label">Главная</div>
+          </div>
+          <div class="stat-card stat-nav" data-section="courses">
+            <div class="stat-icon">📚</div>
+            <div class="stat-num" id="stat-courses">—</div>
+            <div class="stat-label">Курсы</div>
+          </div>
+          <div class="stat-card stat-nav" data-section="projects">
+            <div class="stat-icon">📋</div>
+            <div class="stat-num" id="stat-projects">—</div>
+            <div class="stat-label">Проекты</div>
+          </div>
+          <div class="stat-card stat-nav" data-section="news">
+            <div class="stat-icon">📰</div>
+            <div class="stat-num" id="stat-news">—</div>
+            <div class="stat-label">Новости</div>
+          </div>
+          <div class="stat-card stat-nav" data-section="blog">
+            <div class="stat-icon">📝</div>
+            <div class="stat-num" id="stat-blog">—</div>
+            <div class="stat-label">Блог</div>
+          </div>
+          <div class="stat-card stat-nav" data-section="materials">
+            <div class="stat-icon">📖</div>
+            <div class="stat-num" id="stat-materials">—</div>
+            <div class="stat-label">Материалы</div>
+          </div>
+          <div class="stat-card stat-nav" data-section="photos">
+            <div class="stat-icon">📷</div>
+            <div class="stat-num" id="stat-photos">—</div>
+            <div class="stat-label">Фото</div>
+          </div>
+          <div class="stat-card stat-nav" data-section="reviews">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-num" id="stat-reviews">—</div>
+            <div class="stat-label">Отзывы</div>
+          </div>
+          <div class="stat-card stat-nav" data-section="faq">
+            <div class="stat-icon">❓</div>
+            <div class="stat-num" id="stat-faq">—</div>
+            <div class="stat-label">FAQ</div>
+          </div>
+          <div class="stat-card stat-nav" data-section="messages">
+            <div class="stat-icon">✉️</div>
+            <div class="stat-num" id="stat-messages">—</div>
+            <div class="stat-label">Сообщения</div>
+          </div>
+          <div class="stat-card stat-nav highlight" data-section="messages">
+            <div class="stat-icon">🔴</div>
+            <div class="stat-num" id="stat-unread">—</div>
+            <div class="stat-label">Непрочитанные</div>
+          </div>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>Быстрые действия:</strong> используйте меню слева для управления курсами, отзывами, FAQ и новостями.
+          Новости старше 60 дней удаляются автоматически.
+        </div>
+      </div>
+
+      <!-- ═══ HOMEPAGE ══════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-homepage">
+        <div class="panel-header">
+          <h2>Главная страница</h2>
+        </div>
+        <div class="alert alert-info" style="margin-bottom:20px">
+          Здесь вы редактируете блоки раздела о преподавателе на главной странице. Блоки отображаются в том порядке, в котором они перечислены ниже.
+        </div>
+        <div class="hp-blocks-grid" id="hp-blocks-grid">
+          <div style="padding:20px;color:#64748b">Загрузка…</div>
+        </div>
+      </div>
+
+      <!-- ═══ COURSES ════════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-courses">
+        <div class="panel-header">
+          <h2>Курсы</h2>
+          <button class="btn btn-primary" id="btn-add-course">+ Добавить курс</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="courses-table" aria-label="Список курсов">
+            <thead>
+              <tr>
+                <th style="width:32px"></th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Возраст</th>
+                <th>Цена</th>
+                <th>Статус</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="7">Загрузка…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ PROJECTS ═════════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-projects">
+        <div class="panel-header">
+          <h2>Проекты</h2>
+          <button class="btn btn-primary" id="btn-add-project">+ Добавить проект</button>
+        </div>
+        <div class="table-wrap">
+          <table id="projects-table" aria-label="Список проектов">
+            <thead>
+              <tr>
+                <th style="width:32px"></th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="4">Загрузка…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ REVIEWS ════════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-reviews">
+        <div class="panel-header">
+          <h2>Отзывы</h2>
+          <button class="btn btn-primary" id="btn-add-review">+ Добавить отзыв</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="reviews-table" aria-label="Список отзывов">
+            <thead>
+              <tr>
+                <th style="width:32px"></th>
+                <th>Фото</th>
+                <th>Имя</th>
+                <th>Текст</th>
+                <th>Дата</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="6">Загрузка…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ NEWS ══════════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-news">
+        <div class="panel-header">
+          <h2>Новости</h2>
+          <button class="btn btn-primary" id="btn-add-news">+ Добавить новость</button>
+        </div>
+
+        <div class="alert alert-info" style="margin-bottom:16px">
+          Новости старше 60 дней удаляются автоматически при просмотре сайта.
+        </div>
+
+        <div class="table-wrap">
+          <table id="news-table" aria-label="Список новостей">
+            <thead>
+              <tr>
+                <th>Фото</th>
+                <th>Заголовок</th>
+                <th>Дата</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="4">Загрузка…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ BLOG ══════════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-blog">
+        <div class="panel-header">
+          <h2>Блог</h2>
+          <button class="btn btn-primary" id="btn-add-blog">+ Добавить запись</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="blog-table" aria-label="Список записей блога">
+            <thead>
+              <tr>
+                <th>Фото</th>
+                <th>Заголовок</th>
+                <th>Дата</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="4">Загрузка…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ MATERIALS ══════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-materials">
+        <div class="panel-header">
+          <h2>Материалы</h2>
+          <button class="btn btn-primary" id="btn-add-material">+ Добавить материал</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="materials-table" aria-label="Список материалов">
+            <thead>
+              <tr>
+                <th style="width:32px"></th>
+                <th>Заголовок</th>
+                <th>Файлы</th>
+                <th>Дата</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="5">Загрузка…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ PHOTOS ════════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-photos">
+        <div class="panel-header">
+          <h2>Фото</h2>
+          <button class="btn btn-primary" id="btn-add-photo">+ Добавить фото</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="photos-table" aria-label="Список фотографий">
+            <thead>
+              <tr>
+                <th>Фото</th>
+                <th>Подпись</th>
+                <th>Дата</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="4">Загрузка…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ FAQ ═══════════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-faq">
+        <div class="panel-header">
+          <h2>FAQ</h2>
+          <button class="btn btn-primary" id="btn-add-faq">+ Добавить вопрос</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="faq-table" aria-label="Список FAQ">
+            <thead>
+              <tr>
+                <th style="width:32px"></th>
+                <th>Вопрос</th>
+                <th>Ответ</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty-row"><td colspan="4">Загрузка…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- ═══ MESSAGES ══════════════════════════════════════════════════════ -->
+      <div class="section-panel" id="section-messages">
+        <div class="panel-header">
+          <h2>Сообщения</h2>
+        </div>
+        <div id="messages-list">
+          <div style="padding:20px;color:#64748b">Загрузка…</div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /admin-layout -->
+
+<!-- ═══ MODAL: Course ══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-course" role="dialog" aria-modal="true" aria-labelledby="course-modal-title">
+  <div class="modal">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="course-modal-title">Добавить курс</h3>
+
+    <form id="course-form" novalidate>
+      <div class="form-group">
+        <label for="status-inp">Статус курса</label>
+        <select id="status-inp" name="status">
+          <option value="open">Набор открыт</option>
+          <option value="ongoing">Курс идёт</option>
+          <option value="finished">Курс закончился</option>
+          <option value="custom">Свой статус</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="custom-status-wrap" style="display:none">
+        <label for="custom-status-label-inp">Название тега *</label>
+        <input type="text" id="custom-status-label-inp" name="custom_status_label" placeholder="Например: Бесплатно" maxlength="50">
+      </div>
+
+      <div class="form-group">
+        <label for="course-title-inp">Название курса *</label>
+        <input type="text" id="course-title-inp" name="course_title" placeholder="Название курса" required maxlength="200">
+      </div>
+
+      <div class="form-group">
+        <label for="course-desc-inp">Описание курса</label>
+        <textarea id="course-desc-inp" name="course_description" placeholder="Подробное описание программы…" maxlength="2000" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="age-range-inp">Возраст / Класс *</label>
+        <input type="text" id="age-range-inp" name="age_range" placeholder="3–4 класс" required maxlength="50">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="lesson-count-inp">Количество занятий</label>
+          <input type="text" id="lesson-count-inp" name="lesson_count" placeholder="16 занятий" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label for="schedule-inp">Расписание</label>
+          <input type="text" id="schedule-inp" name="schedule" placeholder="Пт, 17:00–18:00" maxlength="200">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dates-inp">Даты занятий</label>
+        <input type="text" id="dates-inp" name="dates" placeholder="5 сентября — 20 декабря 2025" maxlength="200">
+      </div>
+
+      <div class="form-group">
+        <label>Стоимость (₽)</label>
+        <div class="price-type-row">
+          <label class="price-type-opt">
+            <input type="radio" name="price_type" value="month" checked>
+            <span>/ мес.</span>
+          </label>
+          <label class="price-type-opt">
+            <input type="radio" name="price_type" value="course">
+            <span>/ за 1 занятие в абонементе</span>
+          </label>
+          <label class="price-type-opt">
+            <input type="radio" name="price_type" value="free">
+            <span>Бесплатно</span>
+          </label>
+        </div>
+        <div id="price-amount-wrap">
+          <input type="number" id="price-month-inp" name="price_month" value="0" min="0" placeholder="0">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="toggle-label">
+          <input type="checkbox" id="enrollment-open-inp" name="enrollment_open" checked>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-text" id="enrollment-toggle-text">Кнопка записи активна</span>
+        </label>
+      </div>
+
+      <div class="form-group" id="enrollment-link-wrap" style="display:none">
+        <label for="enrollment-link-inp">Ссылка на Яндекс Диск (для записи)</label>
+        <input type="url" id="enrollment-link-inp" name="enrollment_link" placeholder="https://disk.yandex.ru/..." maxlength="500">
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Review ═════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-review" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
+  <div class="modal">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="review-modal-title">Добавить отзыв</h3>
+
+    <form id="review-form" novalidate enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="review-name-inp">Имя *</label>
+        <input type="text" id="review-name-inp" name="review_name" placeholder="Мария Иванова" required maxlength="100">
+      </div>
+      <div class="form-group">
+        <label for="review-text-inp">Текст отзыва *</label>
+        <textarea id="review-text-inp" name="review_text" placeholder="Текст отзыва…" required maxlength="2000" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="review-image-inp">Скриншот переписки (опционально)</label>
+        <input type="file" id="review-image-inp" name="review_image" accept="image/*">
+        <div class="form-hint">PNG, JPG, WEBP до 5 МБ</div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Добавить отзыв</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: News ═══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-news" role="dialog" aria-modal="true" aria-labelledby="news-modal-title">
+  <div class="modal">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="news-modal-title">Добавить новость</h3>
+
+    <form id="news-form" novalidate enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="news-title-inp">Заголовок *</label>
+        <input type="text" id="news-title-inp" name="news_title" placeholder="Заголовок новости" required maxlength="300">
+      </div>
+      <div class="form-group">
+        <label for="news-text-inp">Текст *</label>
+        <textarea id="news-text-inp" name="news_text" placeholder="Текст новости…" required maxlength="10000" rows="6"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="news-image-inp">Изображение (опционально)</label>
+        <input type="file" id="news-image-inp" name="news_image" accept="image/*">
+        <div class="form-hint">PNG, JPG, WEBP до 5 МБ</div>
+      </div>
+      <div class="form-group">
+        <label>Дата публикации</label>
+        <div class="price-type-row">
+          <label class="price-type-opt">
+            <input type="radio" name="news_date_type" value="today" checked>
+            <span>Сегодня</span>
+          </label>
+          <label class="price-type-opt">
+            <input type="radio" name="news_date_type" value="custom">
+            <span>Своя дата</span>
+          </label>
+        </div>
+        <div id="news-date-custom-wrap" style="display:none; margin-top:8px">
+          <input type="date" id="news-date-inp" name="news_pub_date">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Project ═══════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-project" role="dialog" aria-modal="true" aria-labelledby="project-modal-title-adm">
+  <div class="modal">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="project-modal-title-adm">Добавить проект</h3>
+
+    <form id="project-form" novalidate>
+      <div class="form-group">
+        <label for="proj-title-inp">Название проекта *</label>
+        <input type="text" id="proj-title-inp" name="proj_title" placeholder="Название проекта" required maxlength="200">
+      </div>
+      <div class="form-group">
+        <label for="proj-desc-inp">Описание</label>
+        <textarea id="proj-desc-inp" name="proj_description" placeholder="Описание проекта…" maxlength="2000" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Lecture ════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-lecture" role="dialog" aria-modal="true" aria-labelledby="lecture-modal-title">
+  <div class="modal" style="max-width:600px">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="lecture-modal-title">Добавить лекцию</h3>
+
+    <form id="lecture-form" novalidate enctype="multipart/form-data">
+      <input type="hidden" id="lecture-project-id" name="project_id">
+
+      <div class="form-group">
+        <label for="lect-status-inp">Статус лекции</label>
+        <select id="lect-status-inp" name="status">
+          <option value="open">Набор открыт</option>
+          <option value="upcoming">Скоро</option>
+          <option value="finished">Завершена</option>
+          <option value="custom">Свой статус</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="lect-custom-status-wrap" style="display:none">
+        <label for="lect-custom-status-inp">Название тега *</label>
+        <input type="text" id="lect-custom-status-inp" name="custom_status_label" placeholder="Например: Онлайн" maxlength="50">
+      </div>
+
+      <div class="form-group">
+        <label for="lect-lecturer-name-inp">ФИО лектора</label>
+        <input type="text" id="lect-lecturer-name-inp" name="lecturer_name" placeholder="Иванов Иван Иванович" maxlength="200">
+      </div>
+
+      <div class="form-group">
+        <label for="lect-bio-inp">О преподавателе</label>
+        <textarea id="lect-bio-inp" name="lecturer_bio" placeholder="Специальность, опыт работы…" maxlength="1000" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="lect-photo-inp">Фото лектора (обрезается 2:3)</label>
+        <input type="file" id="lect-photo-inp" name="lecturer_photo" accept="image/*">
+        <div class="form-hint">PNG, JPG, WEBP до 10 МБ</div>
+        <div class="lect-photo-preview-wrap" id="lect-photo-current">
+          <img id="lect-photo-preview" src="" alt="" class="lect-photo-thumb">
+          <button type="button" id="lect-photo-remove" class="btn btn-danger btn-sm">Удалить фото</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lect-title-inp">Название лекции *</label>
+        <input type="text" id="lect-title-inp" name="title" placeholder="Название лекции" required maxlength="200">
+      </div>
+
+      <div class="form-group">
+        <label for="lect-desc-inp">Описание</label>
+        <textarea id="lect-desc-inp" name="description" placeholder="Описание лекции…" maxlength="2000" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="lect-datetime-inp">Дата и время</label>
+        <input type="text" id="lect-datetime-inp" name="lecture_datetime" placeholder="28 июня 2026, 19:00 – 21:00" maxlength="200">
+      </div>
+
+      <div class="form-group">
+        <label>Формат мероприятия</label>
+        <div class="price-type-row">
+          <label class="price-type-opt">
+            <input type="radio" name="event_format" value="online" checked>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Онлайн</span>
+          </label>
+          <label class="price-type-opt">
+            <input type="radio" name="event_format" value="offline">
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Очно</span>
+          </label>
+        </div>
+        <input type="text" id="lect-format-text-inp" name="event_format_text" placeholder="Zoom / РГГУ, ауд. 101" maxlength="200" style="margin-top:8px">
+      </div>
+
+      <div class="form-group">
+        <label>Стоимость (₽)</label>
+        <div class="price-type-row">
+          <label class="price-type-opt">
+            <input type="radio" name="lect_price_type" value="paid" checked>
+            <span id="lect-price-paid-label">/ свой вариант</span>
+          </label>
+          <label class="price-type-opt">
+            <input type="radio" name="lect_price_type" value="free">
+            <span>Бесплатно</span>
+          </label>
+        </div>
+        <div id="lect-price-amount-wrap">
+          <input type="text" id="lect-price-suffix-inp" name="price_suffix" placeholder="встречу / лекцию / вебинар" maxlength="100" style="margin-bottom:8px">
+          <input type="number" id="lect-price-inp" name="price" value="0" min="0" placeholder="0">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="toggle-label">
+          <input type="checkbox" id="lect-enrollment-open-inp" name="enrollment_open" checked>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-text" id="lect-enrollment-toggle-text">Кнопка записи активна</span>
+        </label>
+      </div>
+
+      <div class="form-group" id="lect-event-type-wrap">
+        <label for="lect-event-type-inp">Характер мероприятия <span class="form-hint" style="display:inline">(кнопка: «Записаться на ___»)</span></label>
+        <input type="text" id="lect-event-type-inp" name="event_type" placeholder="лекцию / встречу / вебинар" maxlength="100">
+      </div>
+
+      <div class="form-group" id="lect-enrollment-link-wrap" style="display:none">
+        <label for="lect-enrollment-link-inp">Ссылка для записи</label>
+        <input type="url" id="lect-enrollment-link-inp" name="enrollment_link" placeholder="https://disk.yandex.ru/…" maxlength="500">
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Blog ══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-blog" role="dialog" aria-modal="true" aria-labelledby="blog-modal-title">
+  <div class="modal">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="blog-modal-title">Добавить запись</h3>
+
+    <form id="blog-form" novalidate enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="blog-title-inp">Заголовок *</label>
+        <input type="text" id="blog-title-inp" name="blog_title" placeholder="Заголовок записи" required maxlength="300">
+      </div>
+      <div class="form-group">
+        <label for="blog-text-inp">Текст *</label>
+        <textarea id="blog-text-inp" name="blog_text" placeholder="Текст записи…" required maxlength="10000" rows="6"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="blog-image-inp">Изображение (опционально)</label>
+        <input type="file" id="blog-image-inp" name="blog_image" accept="image/*">
+        <div class="form-hint">PNG, JPG, WEBP до 5 МБ</div>
+      </div>
+      <div class="form-group">
+        <label>Дата публикации</label>
+        <div class="price-type-row">
+          <label class="price-type-opt">
+            <input type="radio" name="blog_date_type" value="today" checked>
+            <span>Сегодня</span>
+          </label>
+          <label class="price-type-opt">
+            <input type="radio" name="blog_date_type" value="custom">
+            <span>Своя дата</span>
+          </label>
+        </div>
+        <div id="blog-date-custom-wrap" style="display:none; margin-top:8px">
+          <input type="date" id="blog-date-inp" name="blog_pub_date">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Material ══════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-material" role="dialog" aria-modal="true" aria-labelledby="material-modal-title">
+  <div class="modal" style="max-width:620px">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="material-modal-title">Добавить материал</h3>
+
+    <form id="material-form" novalidate enctype="multipart/form-data">
+      <input type="hidden" id="material-id-inp">
+      <div class="form-group">
+        <label for="material-title-inp">Заголовок *</label>
+        <input type="text" id="material-title-inp" name="title" placeholder="Название задачи" required maxlength="200">
+      </div>
+      <div class="form-group">
+        <label for="material-condition-inp">Условие задачи</label>
+        <textarea id="material-condition-inp" name="condition" placeholder="Текст условия задачи…" maxlength="5000" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="material-image-inp">Изображение к условию (опционально)</label>
+        <input type="file" id="material-image-inp" name="image" accept="image/*">
+        <div class="form-hint">PNG, JPG, WEBP до 10 МБ</div>
+        <div id="material-image-current" style="display:none;align-items:center;margin-top:6px">
+          <img id="material-image-preview" src="" alt="" style="max-height:80px;border-radius:6px">
+          <button type="button" id="material-image-remove" class="btn btn-danger" style="margin-left:8px;padding:4px 10px;font-size:.8rem">Удалить</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="material-comment-inp">Комментарий (опционально)</label>
+        <textarea id="material-comment-inp" name="comment" placeholder="Комментарий к задаче…" maxlength="3000" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="material-solution-inp">Решение</label>
+        <textarea id="material-solution-inp" name="solution" placeholder="Текст решения…" maxlength="5000" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="material-answer-inp">Ответ</label>
+        <input type="text" id="material-answer-inp" name="answer" placeholder="Краткий ответ…" maxlength="500">
+      </div>
+      <div class="form-group">
+        <label for="material-sol-image-inp">Изображение к решению (опционально)</label>
+        <input type="file" id="material-sol-image-inp" name="solution_image" accept="image/*">
+        <div class="form-hint">PNG, JPG, WEBP до 10 МБ</div>
+        <div id="material-sol-image-current" style="display:none;align-items:center;margin-top:6px">
+          <img id="material-sol-image-preview" src="" alt="" style="max-height:80px;border-radius:6px">
+          <button type="button" id="material-sol-image-remove" class="btn btn-danger" style="margin-left:8px;padding:4px 10px;font-size:.8rem">Удалить</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Файлы</label>
+        <button type="button" class="file-add-btn" id="material-files-trigger">+ Добавить файлы</button>
+        <input type="file" id="material-files-inp" name="files" multiple style="display:none">
+        <div class="form-hint">PDF, Word, видео, изображения — до 10 МБ каждый. Можно добавлять несколько раз.</div>
+        <div id="material-pending-files" style="margin-top:8px"></div>
+      </div>
+      <div id="material-existing-files" style="display:none">
+        <label>Уже прикреплённые файлы</label>
+        <div id="material-files-list"></div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Photo ══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-photo" role="dialog" aria-modal="true" aria-labelledby="photo-modal-title">
+  <div class="modal">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="photo-modal-title">Добавить фото</h3>
+
+    <form id="photo-form" novalidate enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="photo-image-inp">Изображение *</label>
+        <input type="file" id="photo-image-inp" name="photo_image" accept="image/*" required>
+        <div class="form-hint">PNG, JPG, WEBP до 5 МБ</div>
+      </div>
+      <div class="form-group">
+        <label for="photo-title-inp">Подпись (опционально)</label>
+        <input type="text" id="photo-title-inp" name="photo_title" placeholder="Описание фото" maxlength="200">
+      </div>
+      <div class="form-group">
+        <label>Дата</label>
+        <div class="price-type-row">
+          <label class="price-type-opt">
+            <input type="radio" name="photo_date_type" value="today" checked>
+            <span>Сегодня</span>
+          </label>
+          <label class="price-type-opt">
+            <input type="radio" name="photo_date_type" value="custom">
+            <span>Своя дата</span>
+          </label>
+        </div>
+        <div id="photo-date-custom-wrap" style="display:none; margin-top:8px">
+          <input type="date" id="photo-date-inp" name="photo_date">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Загрузить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: FAQ ═══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-faq" role="dialog" aria-modal="true" aria-labelledby="faq-modal-title">
+  <div class="modal">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="faq-modal-title">Добавить вопрос</h3>
+
+    <form id="faq-form" novalidate>
+      <div class="form-group">
+        <label for="faq-question-inp">Вопрос *</label>
+        <input type="text" id="faq-question-inp" name="faq_question" placeholder="Как записаться на курс?" required maxlength="500">
+      </div>
+      <div class="form-group">
+        <label for="faq-answer-inp">Ответ *</label>
+        <textarea id="faq-answer-inp" name="faq_answer" placeholder="Подробный ответ…" required maxlength="3000" rows="5"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Change password ═══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-pw" role="dialog" aria-modal="true" aria-labelledby="pw-modal-title">
+  <div class="modal" style="max-width:400px">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="pw-modal-title">Сменить пароль</h3>
+
+    <div id="pw-alert" class="alert" style="display:none" role="alert"></div>
+
+    <form id="pw-form" novalidate>
+      <div class="form-group">
+        <label for="old-password-inp">Текущий пароль *</label>
+        <input type="password" id="old-password-inp" name="old_password" required autocomplete="current-password">
+      </div>
+      <div class="form-group">
+        <label for="new-password-inp">Новый пароль * (мин. 8 символов)</label>
+        <input type="password" id="new-password-inp" name="new_password" required minlength="8" autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Сменить пароль</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Homepage text block ══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-hp-text" role="dialog" aria-modal="true" aria-labelledby="hp-text-modal-title">
+  <div class="modal">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="hp-text-modal-title">Редактировать блок</h3>
+    <form id="hp-text-form" novalidate>
+      <input type="hidden" id="hp-text-key">
+      <div class="form-group">
+        <label for="hp-text-title-inp">Заголовок блока</label>
+        <input type="text" id="hp-text-title-inp" placeholder="Заголовок" maxlength="300">
+      </div>
+      <div class="form-group">
+        <label for="hp-text-content-inp">Текст</label>
+        <textarea id="hp-text-content-inp" placeholder="Содержимое блока…" rows="10" maxlength="20000"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Homepage image+text block ════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-hp-image" role="dialog" aria-modal="true" aria-labelledby="hp-image-modal-title">
+  <div class="modal" style="max-width:560px">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="hp-image-modal-title">Редактировать блок</h3>
+    <form id="hp-image-form" novalidate enctype="multipart/form-data">
+      <input type="hidden" id="hp-image-key">
+      <div class="form-group">
+        <label for="hp-image-title-inp">Заголовок блока</label>
+        <input type="text" id="hp-image-title-inp" placeholder="Заголовок" maxlength="300">
+      </div>
+      <div class="form-group">
+        <label for="hp-image-content-inp">Текст</label>
+        <textarea id="hp-image-content-inp" placeholder="Содержимое блока…" rows="7" maxlength="20000"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="hp-image-file-inp">Изображение</label>
+        <input type="file" id="hp-image-file-inp" accept="image/*">
+        <div class="form-hint">PNG, JPG, WEBP до 10 МБ</div>
+        <div id="hp-image-current-wrap" style="display:none;margin-top:10px;align-items:center;gap:10px">
+          <img id="hp-image-preview" src="" alt="" style="max-height:100px;border-radius:8px;display:block">
+          <button type="button" id="hp-image-remove-btn" class="btn btn-danger btn-sm">Удалить фото</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ MODAL: Homepage gallery block ═══════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-hp-gallery" role="dialog" aria-modal="true" aria-labelledby="hp-gallery-modal-title">
+  <div class="modal" style="max-width:620px">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="hp-gallery-modal-title">Редактировать блок</h3>
+    <form id="hp-gallery-form" novalidate>
+      <input type="hidden" id="hp-gallery-key">
+      <div class="form-group">
+        <label for="hp-gallery-title-inp">Заголовок блока</label>
+        <input type="text" id="hp-gallery-title-inp" placeholder="Заголовок" maxlength="300">
+      </div>
+      <div class="form-group">
+        <label for="hp-gallery-content-inp">Текст (опционально)</label>
+        <textarea id="hp-gallery-content-inp" placeholder="Дополнительный текст…" rows="3" maxlength="20000"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Добавить изображения</label>
+        <button type="button" class="file-add-btn" id="hp-gallery-add-btn">+ Добавить фото</button>
+        <input type="file" id="hp-gallery-files-inp" accept="image/*" multiple style="display:none">
+        <div class="form-hint">PNG, JPG, WEBP до 10 МБ каждое. Можно выбрать несколько.</div>
+      </div>
+      <div id="hp-gallery-existing" style="margin-top:8px"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:12px">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<script src="/js/api.js?v=2"></script>
+<script src="/js/admin.js?v=2"></script>
+</body>
+</html>

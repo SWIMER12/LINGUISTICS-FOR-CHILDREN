@@ -1,0 +1,19 @@
+{
+  "name": "Лингвистика для детей",
+  "short_name": "Лингвистика",
+  "description": "Онлайн-курсы и лекции по лингвистике для школьников 3–11 класса. Подготовка к олимпиадам.",
+  "lang": "ru",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#e6f0fe",
+  "theme_color": "#e6f0fe",
+  "icons": [
+    {
+      "src": "/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+# ─── Секреты и данные — НИКОГДА не коммитить ──────────────────
+# ключ подписи сессий
+.secret_key
+# база (хеш пароля админа + личные данные)
+*.db
+database.db
+# загруженные пользователями файлы
+uploads/
+
+# ─── Переменные окружения ─────────────────────────────────────
+.env
+.env.local
+
+# ─── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ─── Dev-инструменты / Node ───────────────────────────────────
+node_modules/
+tools/screenshots/node_modules/
+tools/screenshots/shots/
+tools/screenshots/shots_*/
+tools/screenshots/package-lock.json
+
+# ─── Локальные настройки / IDE / ОС ──────────────────────────
+.claude/
+.vscode/
+.idea/
+*.log
+Thumbs.db
+.DS_Store

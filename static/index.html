@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лингвистика для детей — курсы и лекции по лингвистике для школьников</title>
+  <meta name="description" content="Онлайн-курсы по лингвистике для школьников 3–11 класса. Подготовка к ВсОШ, «Высшей пробе» и Традиционной олимпиаде. Преподаёт к.ф.н. Ирина Крылова.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Лингвистика для детей — курсы и лекции для школьников">
+  <meta property="og:description" content="Онлайн-курсы по лингвистике для школьников 3–11 класса. Подготовка к ВсОШ, «Высшей пробе» и Традиционной олимпиаде.">
+  <meta property="og:image" content="/icons/og-image-v3.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="/icons/og-image-v3.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg?v=2">
+  <link rel="apple-touch-icon" href="/icons/favicon.svg?v=2">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#e6f0fe">
+  <link rel="stylesheet" href="/css/style.css?v=3">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Лингвистика для детей",
+    "description": "Онлайн-курсы и лекции по лингвистике для школьников 3–11 класса. Подготовка к ВсОШ, «Высшей пробе» и Традиционной олимпиаде по лингвистике.",
+    "url": "https://example.com/",
+    "logo": "https://example.com/icons/og-image-v3.png",
+    "image": "https://example.com/icons/og-image-v3.png",
+    "inLanguage": "ru",
+    "areaServed": "RU",
+    "founder": {
+      "@type": "Person",
+      "name": "Ирина Крылова",
+      "jobTitle": "Кандидат филологических наук"
+    },
+    "sameAs": [
+      "https://vk.com/linguistics_for_children",
+      "https://t.me/linguistics_for_children"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Главное меню">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Лингвистика для детей</a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/" aria-current="page">Главная</a></li>
+      <li><a href="/news">Новости</a></li>
+      <li><a href="/courses">Курсы</a></li>
+      <li><a href="/projects">Проекты</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/materials">Материалы</a></li>
+      <li><a href="/photos">Фото</a></li>
+      <li><a href="/reviews">Отзывы</a></li>
+      <li><a href="/faq">FAQ</a></li>
+      <li><a href="/courses" class="nav-cta">Записаться</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="tiles">
+
+    <!-- ── Плитка: Hero ─────────────────────────────────── -->
+    <div class="tile">
+      <div class="tile-body hero-text">
+        <img src="/icons/logo.svg" alt="Лингвистика для детей" class="hero-logo">
+        <p>Увлекательно и с любовью о русском языке и лингвистике. Групповые курсы и индивидуальные занятия с опытным преподавателем</p>
+        <div class="hero-actions">
+          <a href="/courses" class="btn btn-primary btn-lg">Посмотреть курсы</a>
+          <button class="btn btn-outline btn-lg" data-scroll-contact>Задать вопрос</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Блоки о преподавателе (динамические) ────────── -->
+    <div id="homepage-blocks-container"></div>
+
+    <!-- ── Плитка: Актуальные курсы ─────────────────────── -->
+    <div class="tile" aria-labelledby="courses-h">
+      <div class="tile-body">
+        <div class="tile-header">
+          <div class="tile-title" id="courses-h">Актуальные курсы</div>
+        </div>
+
+        <div class="inner-cards-list" id="courses-preview" aria-live="polite"></div>
+
+        <div class="tile-show-more">
+          <button id="courses-show-more" class="show-more-btn" style="display:none">Показать ещё</button>
+          <a href="/courses" class="btn btn-outline" style="margin-top:12px;display:inline-flex">Все курсы →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Плитка: Актуальные проекты ───────────────────── -->
+    <div class="tile" aria-labelledby="projects-h">
+      <div class="tile-body">
+        <div class="tile-header">
+          <div class="tile-title" id="projects-h">Актуальные проекты</div>
+        </div>
+
+        <div class="projects-list" id="projects-preview" aria-live="polite"></div>
+
+        <div class="tile-show-more">
+          <a href="/projects" class="btn btn-outline" style="margin-top:12px;display:inline-flex">Все проекты →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Плитка: Контакт (входит в подвал) ───────────── -->
+    <div class="tile tile-into-footer" id="contact" aria-labelledby="contact-h">
+      <div class="tile-body">
+        <div class="tile-header">
+          <div class="tile-title" id="contact-h">Задать вопрос</div>
+        </div>
+
+        <div class="contact-wrap">
+          <div id="contact-alert" class="alert" style="display:none" role="alert"></div>
+
+          <form id="contact-form" novalidate aria-label="Форма обратной связи">
+            <!-- Honeypot -->
+            <div class="hp-field" aria-hidden="true">
+              <input type="text" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Способ связи -->
+            <div class="form-group">
+              <label>Как вам ответить? *</label>
+              <div class="contact-method-cards">
+                <label class="contact-method-card">
+                  <input type="radio" name="contact_method" value="vk" checked>
+                  <span>
+                    <img src="/icons/vk.svg" alt="ВКонтакте">
+                    <span>ВКонтакте</span>
+                  </span>
+                </label>
+                <label class="contact-method-card">
+                  <input type="radio" name="contact_method" value="telegram">
+                  <span>
+                    <img src="/icons/telegram.svg" alt="Telegram">
+                    <span>Telegram</span>
+                  </span>
+                </label>
+                <label class="contact-method-card">
+                  <input type="radio" name="contact_method" value="sms">
+                  <span>
+                    <img src="/icons/sms.svg" alt="SMS">
+                    <span>SMS</span>
+                  </span>
+                </label>
+                <label class="contact-method-card">
+                  <input type="radio" name="contact_method" value="email">
+                  <span>
+                    <img src="/icons/email.svg" alt="Email">
+                    <span>Email</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Телефон (Telegram / VK / SMS) -->
+            <div class="form-group" id="c-phone-group">
+              <label for="c-phone">Номер телефона *</label>
+              <input type="tel" id="c-phone" name="phone" placeholder="+7 999 123-45-67" maxlength="20" autocomplete="tel">
+            </div>
+
+            <!-- Email -->
+            <div class="form-group" id="c-email-group" style="display:none">
+              <label for="c-email">Электронная почта *</label>
+              <input type="email" id="c-email" name="email" placeholder="email@example.com" maxlength="200" autocomplete="email">
+            </div>
+
+            <div class="form-group">
+              <label for="c-name">Ваше имя *</label>
+              <input type="text" id="c-name" name="name" placeholder="Иван Иванов" required maxlength="100" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="c-message">Сообщение *</label>
+              <textarea id="c-message" name="message" placeholder="Ваш вопрос…" required maxlength="2000" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Отправить сообщение</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tiles -->
+
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-col-title">Разделы</div>
+        <nav class="footer-nav" aria-label="Подвал">
+          <a href="/news">Новости</a>
+          <a href="/courses">Курсы</a>
+          <a href="/projects">Проекты</a>
+          <a href="/blog">Блог</a>
+          <a href="/materials">Материалы</a>
+          <a href="/photos">Фото</a>
+          <a href="/reviews">Отзывы</a>
+          <a href="/faq">FAQ</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Контакты</div>
+        <div class="footer-contacts">
+          <a href="https://vk.com/linguistics_for_children" class="footer-contact-link" target="_blank" rel="noopener">
+            <img src="/icons/vk.svg" alt="ВКонтакте">
+            <span>ВКонтакте</span>
+          </a>
+          <a href="https://t.me/linguistics_for_children" class="footer-contact-link" target="_blank" rel="noopener">
+            <img src="/icons/telegram.svg" alt="Telegram">
+            <span>Telegram</span>
+          </a>
+          <a href="#" class="footer-contact-link" data-copy="+7 905 211 80 10">
+            <img src="/icons/sms.svg" alt="Телефон">
+            <span>+7 905 211 80 10</span>
+          </a>
+          <a href="#" class="footer-contact-link" data-copy="i-krylova178@yandex.ru">
+            <img src="/icons/email.svg" alt="Email">
+            <span>i-krylova178@yandex.ru</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col" style="text-align:right;justify-self:end">
+        <div class="footer-brand">Лингвистика для детей</div>
+        <div class="footer-copy">Все права защищены</div>
+        <div class="footer-dev">Разработчик — <a href="https://github.com/SWIMER12" target="_blank" rel="noopener">SWIMER12</a></div>
+      </div>
+    </div>
+  </footer>
+</div><!-- /page -->
+
+<script src="/js/api.js"></script>
+<script src="/js/main.js?v=2"></script>
+
+<script src="/js/copy-contact.js"></script>
+</body>
+</html>
+
