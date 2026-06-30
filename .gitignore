@@ -33,3 +33,6 @@ tools/screenshots/package-lock.json
 *.log
 Thumbs.db
 .DS_Store
+
+# Резервные копии контента (база + загрузки) — не в git
+backup_*.zip
