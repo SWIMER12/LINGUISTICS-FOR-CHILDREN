@@ -212,10 +212,11 @@ function buildHomeProjectCard(p) {
   }
   block.appendChild(header);
 
-  // Выбрать актуальную лекцию: сначала open/upcoming, иначе последняя
+  // Выбрать лекцию: сначала open/upcoming, иначе первая в списке
+  // (админ ставит самую свежую лекцию наверх, sort_order=0).
   const lectures = p.lectures || [];
   const active = lectures.find(l => l.status === 'open' || l.status === 'upcoming')
-    || lectures[lectures.length - 1];
+    || lectures[0];
 
   const lecturesWrap = document.createElement('div');
   lecturesWrap.className = 'project-block-lectures';
